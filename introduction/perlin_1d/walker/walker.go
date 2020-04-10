@@ -1,6 +1,8 @@
 package walker
 
 import (
+	"time"
+
 	"github.com/aquilax/go-perlin"
 	"github.com/faiface/pixel"
 	"github.com/faiface/pixel/imdraw"
@@ -15,7 +17,7 @@ type Walker struct {
 }
 
 var imd *imdraw.IMDraw = imdraw.New(nil)
-var p *perlin.Perlin = perlin.NewPerlin(2, 4, 3, 0)
+var p *perlin.Perlin = perlin.NewPerlin(2, 4, 3, time.Now().Unix())
 
 // New create a new walker
 func New() *Walker {
