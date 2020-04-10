@@ -1,18 +1,18 @@
 package main
 
 import (
-	"perlin_walk/walker"
+	"perlinwalk/walker"
 
 	"github.com/faiface/pixel"
-	"github.com/faiface/pixel/imdraw"
 	"github.com/faiface/pixel/pixelgl"
 	"golang.org/x/image/colornames"
 )
 
 func run() {
+	width, height := 800, 800
 	cfg := pixelgl.WindowConfig{
 		Title:  "1D Perlin Walker",
-		Bounds: pixel.R(0, 0, 1024, 768),
+		Bounds: pixel.R(0, 0, float64(width), float64(height)),
 		VSync:  true,
 	}
 	win, err := pixelgl.NewWindow(cfg)
@@ -21,18 +21,11 @@ func run() {
 		panic(err)
 	}
 
-	imd := imdraw.New(nil)
-	imd.Color = colornames.Black
-
 	walker := walker.New()
 
 	for !win.Closed() {
-		imd.Clear()
 		win.Clear(colornames.White)
-
-		walker.Step()
-		walker.Display(imd)
-		imd.Draw(win)
+		walker.Display(win, 800, 800)
 		win.Update()
 	}
 }
